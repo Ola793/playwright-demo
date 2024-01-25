@@ -11,12 +11,10 @@ require("dotenv").config();
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export const STORAGE_STATE = path.join(__dirname, "states/.auth/user.json");
-
-console.log("Storage state path:", STORAGE_STATE);
+// export const STORAGE_STATE = path.join(__dirname, "states/.auth/user.json");
 
 module.exports = defineConfig({
-  globalSetup: "./global-setup.js",
+  globalSetup: "./global-setup",
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -32,30 +30,29 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "https://qauto.forstudy.space/",
-    // storageState: "state.json",
+    storageState: "login.json",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     httpCredentials: {
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
+      username: process.env.HTTP_NAME,
+      password: process.env.HTTP_PASSWORD,
     },
     screenshot: "only-on-failure",
   },
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: "setup",
-      testMatch: "login-setup.js",
-    },
+    // {
+    //   name: "setup",
+    //   testMatch: "login-setup.js",
+    // },
 
     {
       name: "chromium",
-      // testMatch: "*.spec.js",
-      dependencies: ["setup"],
+      // dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
-        storageState: STORAGE_STATE,
+        // storageState: "login.json",
       },
     },
 

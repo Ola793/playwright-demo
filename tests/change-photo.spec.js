@@ -1,11 +1,18 @@
 import { test, expect } from "@playwright/test";
-import { LandingPage } from "./POM/landing.page";
+import { Garage } from "./POM/garage.page";
 
 test.describe("Change avatar", () => {
   test("should change avatar", async ({ page }) => {
-    const landingPage = new LandingPage(page);
-    await page.goto("/");
+    const garage = new Garage(page);
+    await garage.goto();
     await page.pause();
-    await landingPage.navDropDown.click();
+    await expect(garage.navDropDown).toBeVisible();
+    await garage.navDropDown.click();
+    await garage.dropDownProfileItem.click();
+    await expect(garage.title).toHaveText("Profile");
+    await garage.editButton.click();
+    await garage.editInput.setInputFiles("tests/fixtures/mucha-2.png");
+    await garage.saveButton.click();
+    await page.reload();
   });
 });
