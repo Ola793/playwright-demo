@@ -1,5 +1,5 @@
 import { test as setup, chromium, expect } from "@playwright/test";
-// import { STORAGE_STATE } from "../playwright.config";
+import { STORAGE_STATE } from "../playwright.config";
 
 setup("do login", async () => {
   const browser = await chromium.launch();
@@ -19,6 +19,6 @@ setup("do login", async () => {
 
   expect(resp.status).toEqual("ok");
 
-  await page.context().storageState({ path: "login.json" });
+  await page.context().storageState({ path: STORAGE_STATE });
   await browser.close();
 });

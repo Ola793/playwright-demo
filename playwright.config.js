@@ -11,9 +11,9 @@ require("dotenv").config();
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-// export const STORAGE_STATE = path.join(__dirname, "states/.auth/user.json");
+export const STORAGE_STATE = path.join(__dirname, "states/.auth/user.json");
 
-module.exports = defineConfig({
+export default defineConfig({
   globalSetup: "./global-setup",
   testDir: "./tests",
   /* Run tests in files in parallel */
@@ -30,7 +30,7 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "https://qauto.forstudy.space/",
-    storageState: "login.json",
+    storageState: STORAGE_STATE,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     httpCredentials: {
@@ -52,7 +52,7 @@ module.exports = defineConfig({
       // dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
-        // storageState: "login.json",
+        // storageState: STORAGE_STATE,
       },
     },
 

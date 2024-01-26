@@ -26,7 +26,7 @@ async function globalSetup(config) {
 
   expect(resp.status).toEqual("ok");
 
-  await page.context().storageState({ path: "login.json" });
+  await page.context().storageState({ path: STORAGE_STATE });
   await browser.close();
 }
 
