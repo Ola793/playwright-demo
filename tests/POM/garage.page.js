@@ -28,9 +28,9 @@ export class Garage {
       },
     );
     this.carSelect = page.locator("#carSelectDropdown");
-    this.mileageValue = page.locator("table tbody tr td").locator("nth=1");
-    this.litersValue = page.locator("table tbody tr td").locator("nth=2");
-    this.totalCostValue = page.locator("table tbody tr td").locator("nth=3");
+    this.mileageValue = page.locator("table tbody tr td").nth(1);
+    this.litersValue = page.locator("table tbody tr td").nth(2);
+    this.totalCostValue = page.locator("table tbody tr td").nth(3);
   }
 
   async goto() {
