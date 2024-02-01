@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import randomizer from "./randomizer.js";
+import randomizer from "./randomizer";
 
 test.describe("New user registration", () => {
   test("should register", async ({ page }) => {
@@ -14,6 +14,10 @@ test.describe("New user registration", () => {
     const emailValue = randomizer.randomEmail();
 
     await page.goto("/");
+
+    if (await page.locator("img.icon-btn").isVisible()) {
+      await page.locator("a .icon-logout").click();
+    }
 
     await page.locator("button", { hasText: "Sign up" }).click();
 

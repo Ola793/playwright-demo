@@ -1,7 +1,7 @@
 const randomizer = {
   password: "topSecret%793",
 
-  randomName() {
+  randomName(): string {
     let name = "";
     let randomNumber = 0;
 
@@ -13,23 +13,23 @@ const randomizer = {
       name += String.fromCharCode(97 + this.randomNumber());
     }
 
-    let firstLetter = String(name.split("")[0].toUpperCase());
-    let nameArr = name.split("");
+    const firstLetter = String(name.split("")[0].toUpperCase());
+    const nameArr = name.split("");
 
     nameArr.shift();
 
     return firstLetter + nameArr.join("");
   },
 
-  randomLastName() {
+  randomLastName(): string {
     return this.randomName();
   },
 
-  randomEmail() {
+  randomEmail(): string {
     return `${this.randomName()}${this.randomNumber()}@gmail.com`;
   },
 
-  randomNumber() {
+  randomNumber(): number {
     return Math.floor(Math.random() * 26);
   },
 };

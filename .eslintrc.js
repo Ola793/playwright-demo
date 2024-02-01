@@ -3,8 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["prettier"],
-  plugins: ["prettier"],
+  extends: ["plugin:@typescript-eslint/recommended", "prettier"],
   overrides: [
     {
       env: {
@@ -16,15 +15,19 @@ module.exports = {
       },
     },
   ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
   },
+  plugins: ["@typescript-eslint", "prettier"],
   rules: {
     "prettier/prettier": [
       "error",
       {
         endOfLine: "auto",
+        singleQuote: false,
+        semi: true,
       },
     ],
   },

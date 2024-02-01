@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { Garage } from "./POM/garage.page";
 
 test.describe("Adding car test", async () => {
-  let garage;
+  let garage: Garage;
   const carBrand = "Porsche";
   const carModel = "Panamera";
   const mileage = "350";
@@ -26,7 +26,7 @@ test.describe("Adding car test", async () => {
 
     await test.step("should add expense", async () => {
       await garage.addFuelExpense.nth(0).click();
-      await garage.addMileage.fill(mileage);
+      await garage.addMileage.fill(mileage, { timeout: 10000 });
       await garage.addExpenseLiters.fill(liters);
       await garage.addTotalCost.fill(totalCost);
       await garage.addButton.nth(1).click();

@@ -1,9 +1,10 @@
 import { chromium, expect } from "@playwright/test";
 import { STORAGE_STATE } from "./playwright.config";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const dotenv = require("dotenv");
 
-async function globalSetup(config) {
+async function globalSetup() {
   dotenv.config({
     path: ".env",
     override: true,
